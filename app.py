@@ -31,7 +31,7 @@ html, body, [class*="css"] {
     color: white;
 }
 
-/* Hide Streamlit default */
+/* Hide Streamlit Branding */
 
 header {
     visibility: hidden;
@@ -46,24 +46,24 @@ footer {
 .hero {
     text-align: center;
     padding-top: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 25px;
 }
 
 .hero-title {
-    font-size: 74px;
+    font-size: 72px;
     font-weight: 700;
     background: linear-gradient(to right, #60A5FA, #A855F7);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
 }
 
 .hero-subtitle {
     font-size: 20px;
     color: #CBD5E1;
+    margin-top: 10px;
 }
 
-/* Top Feature Cards */
+/* Feature Cards */
 
 .feature-container {
     display: flex;
@@ -82,6 +82,7 @@ footer {
     min-width: 220px;
     text-align: center;
     backdrop-filter: blur(10px);
+    font-size: 17px;
 }
 
 /* Sidebar */
@@ -91,7 +92,7 @@ section[data-testid="stSidebar"] {
     border-right: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Sidebar Heading */
+/* Sidebar Head */
 
 .side-head {
     font-size: 24px;
@@ -149,7 +150,6 @@ section[data-testid="stSidebar"] {
 
 .stButton button:hover {
     transform: scale(1.03);
-    background: linear-gradient(90deg,#1D4ED8,#6D28D9);
 }
 
 /* Answer Box */
@@ -271,7 +271,7 @@ with st.spinner("📚 Loading SISTec knowledge base..."):
         if text:
             full_text += text + "\n"
 
-# ---------------- TEXT CHUNKING ---------------- #
+# ---------------- CHUNKING ---------------- #
 
 def chunk_text(text, chunk_size=500, overlap=50):
 
@@ -303,7 +303,7 @@ with st.spinner("⚡ Creating AI vector search engine..."):
 
     index.add(embeddings)
 
-# ---------------- INPUT ---------------- #
+# ---------------- QUESTION INPUT ---------------- #
 
 question = st.text_input(
     "Ask anything about SISTec"
@@ -317,7 +317,7 @@ with col2:
 
     generate = st.button("✨ Generate Smart Answer")
 
-# ---------------- RESPONSE ---------------- #
+# ---------------- ANSWER ---------------- #
 
 if generate:
 
@@ -359,11 +359,11 @@ Answer:
                 response = llm.generate_content(prompt)
 
                 st.markdown(
-                    f"""
+                    f'''
                     <div class="answer-box">
                     {response.text}
                     </div>
-                    """,
+                    ''',
                     unsafe_allow_html=True
                 )
 
