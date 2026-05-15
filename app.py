@@ -36,7 +36,7 @@ section[data-testid="stSidebar"] {
 
 .main-title {
     text-align: center;
-    font-size: 70px;
+    font-size: 72px;
     font-weight: 700;
     background: linear-gradient(to right, #7aa2ff, #b06cff);
     -webkit-background-clip: text;
@@ -55,8 +55,8 @@ section[data-testid="stSidebar"] {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 40px;
     flex-wrap: wrap;
+    margin-bottom: 45px;
 }
 
 .feature-card {
@@ -64,8 +64,8 @@ section[data-testid="stSidebar"] {
     padding: 18px 28px;
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.08);
-    font-size: 18px;
     color: white;
+    font-size: 18px;
     backdrop-filter: blur(10px);
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
@@ -98,7 +98,7 @@ section[data-testid="stSidebar"] {
 }
 
 .stButton > button {
-    background: linear-gradient(to right, #3b82f6, #9333ea);
+    background: linear-gradient(to right, #2563eb, #9333ea);
     color: white;
     border: none;
     border-radius: 16px;
@@ -129,25 +129,47 @@ section[data-testid="stSidebar"] {
 
 st.sidebar.markdown("## 📌 Sample Questions")
 
-st.sidebar.markdown('<div class="sample-box">What courses are available in SISTec?</div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sample-box">Tell me about placements</div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sample-box">Does SISTec provide hostel facility?</div>', unsafe_allow_html=True)
-st.sidebar.markdown('<div class="sample-box">Where is SISTec located?</div>', unsafe_allow_html=True)
+st.sidebar.markdown(
+    '<div class="sample-box">What courses are available in SISTec?</div>',
+    unsafe_allow_html=True
+)
+
+st.sidebar.markdown(
+    '<div class="sample-box">Tell me about placements</div>',
+    unsafe_allow_html=True
+)
+
+st.sidebar.markdown(
+    '<div class="sample-box">Does SISTec provide hostel facility?</div>',
+    unsafe_allow_html=True
+)
+
+st.sidebar.markdown(
+    '<div class="sample-box">Where is SISTec located?</div>',
+    unsafe_allow_html=True
+)
 
 st.sidebar.markdown("---")
+
 st.sidebar.success("⚡ Smart Assistant Ready")
 
 # ---------------- GEMINI API ---------------- #
 
 try:
+
     genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+
 except:
+
     st.error("API Key Missing")
     st.stop()
 
 # ---------------- TITLE ---------------- #
 
-st.markdown('<div class="main-title">🎓 SISTec AI Assistant</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="main-title">🎓 SISTec AI Assistant</div>',
+    unsafe_allow_html=True
+)
 
 st.markdown(
     '<div class="sub-title">Premium AI Powered College Information Chatbot using Gemini + RAG</div>',
@@ -174,7 +196,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ---------------- PDF READING ---------------- #
+# ---------------- READ PDF ---------------- #
 
 pdf_path = "sistec_info.pdf"
 
@@ -183,11 +205,13 @@ reader = PdfReader(pdf_path)
 full_text = ""
 
 for page in reader.pages:
+
     text = page.extract_text()
+
     if text:
         full_text += text + "\n"
 
-# ---------------- TEXT CHUNKING ---------------- #
+# ---------------- CHUNK TEXT ---------------- #
 
 def chunk_text(text, chunk_size=500, overlap=50):
 
@@ -217,11 +241,11 @@ index = faiss.IndexFlatL2(embeddings.shape[1])
 
 index.add(embeddings)
 
-# ---------------- USER QUESTION ---------------- #
+# ---------------- QUESTION INPUT ---------------- #
 
 question = st.text_input("Ask anything about SISTec")
 
-# ---------------- BUTTON ---------------- #
+# ---------------- ANSWER BUTTON ---------------- #
 
 if st.button("✨ Generate Smart Answer"):
 
@@ -242,7 +266,7 @@ You are a professional AI college assistant.
 
 Answer ONLY from the provided context.
 
-If the answer is not available in context, say:
+If the answer is not available in the context, say:
 "Sorry, I could not find this information in the SISTec database."
 
 Context:
@@ -256,7 +280,7 @@ Answer:
 
         try:
 
-            llm = genai.GenerativeModel("gemini-1.5-flash")
+            llm = genai.GenerativeModel("gemini-2.0-flash")
 
             response = llm.generate_content(prompt)
 
