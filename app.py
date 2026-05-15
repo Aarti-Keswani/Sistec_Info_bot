@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# ---------------- PREMIUM UI ---------------- #
+# ---------------- PREMIUM CSS ---------------- #
 
 st.markdown("""
 <style>
@@ -31,7 +31,7 @@ html, body, [class*="css"] {
     color: white;
 }
 
-/* Remove Streamlit Header */
+/* Hide Streamlit default */
 
 header {
     visibility: hidden;
@@ -41,16 +41,16 @@ footer {
     visibility: hidden;
 }
 
-/* Main Hero */
+/* Hero Section */
 
 .hero {
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
 
 .hero-title {
-    font-size: 70px;
+    font-size: 74px;
     font-weight: 700;
     background: linear-gradient(to right, #60A5FA, #A855F7);
     -webkit-background-clip: text;
@@ -61,61 +61,27 @@ footer {
 .hero-subtitle {
     font-size: 20px;
     color: #CBD5E1;
+}
+
+/* Top Feature Cards */
+
+.feature-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     margin-bottom: 35px;
+    flex-wrap: wrap;
 }
 
-/* Glass Container */
-
-.glass {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(18px);
-    border-radius: 24px;
-    padding: 35px;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-}
-
-/* Input Box */
-
-.stTextInput > div > div > input {
+.feature-card {
     background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 18px 28px;
     color: white;
-    border-radius: 16px;
-    padding: 18px;
-    font-size: 17px;
-}
-
-/* Button */
-
-.stButton button {
-    width: 100%;
-    border-radius: 16px;
-    border: none;
-    background: linear-gradient(90deg,#2563EB,#7C3AED);
-    color: white;
-    height: 58px;
-    font-size: 18px;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-
-.stButton button:hover {
-    transform: scale(1.02);
-    background: linear-gradient(90deg,#1D4ED8,#6D28D9);
-}
-
-/* Answer Box */
-
-.answer-box {
-    background: rgba(255,255,255,0.07);
-    border-radius: 20px;
-    padding: 28px;
-    margin-top: 25px;
-    color: white;
-    line-height: 1.9;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    min-width: 220px;
+    text-align: center;
+    backdrop-filter: blur(10px);
 }
 
 /* Sidebar */
@@ -125,16 +91,16 @@ section[data-testid="stSidebar"] {
     border-right: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Sidebar Head */
+/* Sidebar Heading */
 
 .side-head {
     font-size: 24px;
     font-weight: 600;
     color: white;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-/* Cards */
+/* Sidebar Cards */
 
 .card {
     background: rgba(255,255,255,0.07);
@@ -147,15 +113,64 @@ section[data-testid="stSidebar"] {
 }
 
 .card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     background: rgba(255,255,255,0.1);
+}
+
+/* Input */
+
+.stTextInput {
+    max-width: 950px;
+    margin: auto;
+}
+
+.stTextInput > div > div > input {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: white;
+    border-radius: 20px;
+    padding: 18px;
+    font-size: 18px;
+}
+
+/* Button */
+
+.stButton button {
+    width: 100%;
+    border-radius: 18px;
+    border: none;
+    background: linear-gradient(90deg,#2563EB,#7C3AED);
+    color: white;
+    height: 60px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.stButton button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(90deg,#1D4ED8,#6D28D9);
+}
+
+/* Answer Box */
+
+.answer-box {
+    background: rgba(255,255,255,0.08);
+    border-radius: 22px;
+    padding: 30px;
+    margin-top: 30px;
+    color: white;
+    line-height: 2;
+    font-size: 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
 }
 
 /* Footer */
 
 .footer {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 60px;
     color: #94A3B8;
     font-size: 14px;
 }
@@ -163,7 +178,7 @@ section[data-testid="stSidebar"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HERO SECTION ---------------- #
+# ---------------- HERO ---------------- #
 
 st.markdown("""
 <div class="hero">
@@ -171,6 +186,26 @@ st.markdown("""
     <div class="hero-subtitle">
         Premium AI Powered College Information Chatbot using Gemini + RAG
     </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ---------------- FEATURE CARDS ---------------- #
+
+st.markdown("""
+<div class="feature-container">
+
+    <div class="feature-card">
+        🤖 AI Powered Assistant
+    </div>
+
+    <div class="feature-card">
+        ⚡ Instant Smart Answers
+    </div>
+
+    <div class="feature-card">
+        📚 PDF Based Knowledge
+    </div>
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -203,17 +238,19 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-# ---------------- GEMINI ---------------- #
+    st.markdown("---")
+
+    st.success("⚡ Smart Assistant Ready")
+
+# ---------------- GEMINI API ---------------- #
 
 try:
 
     genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
-    st.sidebar.success("✅ Gemini API Connected")
-
 except Exception:
 
-    st.error("❌ Gemini API Key not found")
+    st.error("Gemini API Key not found")
 
     st.stop()
 
@@ -234,7 +271,7 @@ with st.spinner("📚 Loading SISTec knowledge base..."):
         if text:
             full_text += text + "\n"
 
-# ---------------- CHUNKING ---------------- #
+# ---------------- TEXT CHUNKING ---------------- #
 
 def chunk_text(text, chunk_size=500, overlap=50):
 
@@ -266,15 +303,23 @@ with st.spinner("⚡ Creating AI vector search engine..."):
 
     index.add(embeddings)
 
-# ---------------- MAIN CONTAINER ---------------- #
-
-st.markdown('<div class="glass">', unsafe_allow_html=True)
+# ---------------- INPUT ---------------- #
 
 question = st.text_input(
     "Ask anything about SISTec"
 )
 
-if st.button("✨ Generate Smart Answer"):
+# ---------------- BUTTON ---------------- #
+
+col1, col2, col3 = st.columns([1,1,1])
+
+with col2:
+
+    generate = st.button("✨ Generate Smart Answer")
+
+# ---------------- RESPONSE ---------------- #
+
+if generate:
 
     if question.strip() == "":
 
@@ -289,7 +334,12 @@ if st.button("✨ Generate Smart Answer"):
         context = "\n\n".join([texts[i] for i in indices[0]])
 
         prompt = f"""
-Use only the provided context to answer the question.
+You are a SISTec college assistant.
+
+Answer ONLY from the provided context.
+
+If the answer is not available in the context, reply:
+'Sorry, I can only answer questions related to SISTec.'
 
 Context:
 {context}
@@ -304,7 +354,7 @@ Answer:
 
             llm = genai.GenerativeModel("gemini-2.5-flash-lite")
 
-            with st.spinner("🤖 AI is generating answer..."):
+            with st.spinner("🤖 AI is analyzing SISTec knowledge..."):
 
                 response = llm.generate_content(prompt)
 
@@ -317,7 +367,7 @@ Answer:
                     unsafe_allow_html=True
                 )
 
-            with st.expander("📋 Context Used"):
+            with st.expander("📋 View Context Used"):
 
                 st.write(context)
 
@@ -325,12 +375,10 @@ Answer:
 
             st.error(f"Gemini Error: {e}")
 
-st.markdown('</div>', unsafe_allow_html=True)
-
 # ---------------- FOOTER ---------------- #
 
 st.markdown("""
 <div class="footer">
-Built with ❤️ using Python • Gemini API • FAISS • Streamlit
+Powered by Gemini AI • FAISS • Streamlit
 </div>
 """, unsafe_allow_html=True)
