@@ -268,7 +268,6 @@ with st.spinner("⚡ Creating AI vector search engine..."):
 
 # ---------------- MAIN CONTAINER ---------------- #
 
-st.markdown('<div class="glass">', unsafe_allow_html=True)
 
 question = st.text_input(
     "Ask anything about SISTec"
